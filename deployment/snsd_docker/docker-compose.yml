@@ -1,0 +1,16 @@
+version: '3.7'
+
+services:
+
+  minio:
+    container_name: minio2s
+    image: quay.io/minio/minio
+    command: server /data --console-address ":9090"
+    ports:
+      - 9000:9000
+      - 9090:9090
+    environment:
+      - MINIO_CONFIG_ENV_FILE=/etc/conf/config.env
+    volumes:
+      - ${HOME}/minio/data:/data
+      - ${HOME}/minio_scripts/deployment/snsd_docker/conf:/etc/conf
