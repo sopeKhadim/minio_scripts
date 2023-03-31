@@ -1,0 +1,33 @@
+version: '3.7'
+
+services:
+
+  minio:
+    container_name: minio_snmd
+    image: quay.io/minio/minio:RELEASE.2023-02-27T18-10-45Z
+    command: server /data{1...8} --console-address ":9090"
+    ports:
+      - 9000:9000
+      - 9090:9090
+    environment:
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
+    volumes:
+      - data_minio1:/data1
+      - data_minio2:/data2
+      - data_minio3:/data3
+      - data_minio4:/data4
+      - data_minio5:/data5
+      - data_minio6:/data6
+      - data_minio7:/data7
+      - data_minio8:/data8
+volumes:
+  # Listes des volumes à mapper sur le répertoire de dev
+  data_minio1:
+  data_minio2:
+  data_minio3:
+  data_minio4:
+  data_minio5:
+  data_minio6:
+  data_minio7:
+  data_minio8:
