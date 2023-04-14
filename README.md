@@ -1,8 +1,8 @@
 # Toolbox MinIO
 
-**Author** : Djibril MBOUP, PhD
+**Author** : Djibril MBOUP, PhD  
 **Version** : 1.0  
-**Created date** : 20/03/2023
+**Created date** : 20/03/2023  
 
 ## Description
 The aim of this toolbox is to help students to install and deploy MinIO in different environments. 
