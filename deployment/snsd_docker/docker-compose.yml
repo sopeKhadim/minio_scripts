@@ -9,8 +9,18 @@ services:
     ports:
       - 9000:9000
       - 9090:9090
+
     environment:
-      - MINIO_CONFIG_ENV_FILE=/etc/conf/config.env
+      - MINIO_ROOT_USER=minioadmin
+      - MINIO_ROOT_PASSWORD=minioadmin
     volumes:
-      - ${HOME}/minio/data:/data
-      - ${HOME}/minio_scripts/deployment/snsd_docker/conf:/etc/conf
+        - data_minio:/data
+volumes:
+    data_minio:
+
+
+ #   environment:
+ #     - MINIO_CONFIG_ENV_FILE=/etc/conf/config.env
+ #   volumes:
+ #    - ${HOME}/minio/data:/data
+ #     - ${HOME}/minio_scripts/deployment/snsd_docker/conf:/etc/conf
