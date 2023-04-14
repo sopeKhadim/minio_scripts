@@ -6,7 +6,7 @@
 
 ## Description
 The aim of this toolbox is to help students to install and deploy MinIO in different environments. 
-It content Python scripts to manipulate MinIo bucket and object by using MinIO Client SDK.
+It content Python scripts to manipulate MinIO buckets and objects by using MinIO Client SDK.
 
 ## Installation.
 - Clone repository
