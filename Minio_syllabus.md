@@ -5,7 +5,7 @@
 - Session 1 : Les Fondamentaux
 - Session 3 : MinIO Deploiemnet
 - Session 4 : de MINIO
-Session 5 : MinIO Administration
+- Session 5 : MinIO Administration
 
 1. Session 1 : Les Fondamentaux
     - File Storage vs Block Storage

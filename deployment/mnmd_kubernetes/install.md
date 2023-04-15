@@ -1,54 +1,14 @@
-# Procedure d'installation Minio sur Kubernetes
+# Procedure d'installation Minio Multi-tenant Cluster sur Kubernetes
 
-## Creation Single Node Single Drive Cluster sur Minikube
+- **Note** : Installation à valider
 
-### Pré-requis
-
-- Installer Kubernetes ou Minikube en local
-
-### Creation du cluster avec minikube
-
-- Demarrer Minikube cluster
-  - `minikube start -p cluster1`
-- Vérification
-  - `kubectl get po -A`
-- Minikube Dashboard
-  - `minikube dashboard`
-
-### Déployement MinIO
-
-- Créer un volume dans dans le repertire /mnt/
-  - `mkdir -m 777 /mnt/data
-- Récuperer le fichier de deploiement minio-dev.yaml
-  - `curl https://raw.githubusercontent.com/minio/docs/master/source/extra/examples/minio-dev.yaml -O`
-- Ouvrir le fichier minio-dev
-  - Remplacer `kubealpha.local` avec le nom de votre cluster `cluster1`
-    - Remplacer `/mnt/disk1/data` avec `/mnt/data`
-
-- Deployer le fichier minio-dev.yml
-  - `kubectl apply -f minio-dev.yml`
-- Verification des pods crées
-  - `kubectl get pods -n minio-dev`
-  - `kubectl describe pod/minio -n minio-dev`
-  - `kubectl logs pod/minio -n minio-dev`
-
-### Démarrer MinIO Console
-
-- Activer le forward proxy
-  - `kubectl port-forward pod/minio 9000 9090 -n minio-dev`
-- Acceder MinIO UI Console sur l'url http://127.0.0.1:9090.
-- Les credentials par défaut sont `minioadmin | minioadmin`
-
-
-## Creation Multitenant cluster Cluster sur Kubernetes
-
-### Pré-requis
+### Prérequis
 
 - Installer Kubernetes ou Minikube en local
 - krew
 - helm  (optionel)
 
-### Creation du cluster avec minikube
+### Creation du cluster avec Minikube
 
 - Demarrer Minikube cluster
   - `minikube start -p cluster1`
@@ -92,3 +52,6 @@
 - Verifier les ressources
   - `kubectl get pv`
   - `kubectl get pvc -n storage`
+
+## Licence
+@UnLicense

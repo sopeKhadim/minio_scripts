@@ -18,9 +18,3 @@ services:
 volumes:
     data_minio:
 
-
- #   environment:
- #     - MINIO_CONFIG_ENV_FILE=/etc/conf/config.env
- #   volumes:
- #    - ${HOME}/minio/data:/data
- #     - ${HOME}/minio_scripts/deployment/snsd_docker/conf:/etc/conf
