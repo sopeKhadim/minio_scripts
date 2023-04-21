@@ -4,19 +4,15 @@
 
 ### Prérequis
 
-- Installer Kubernetes ou Minikube en local
-- krew
-- helm  (optionel)
+- Installation et Création d'un cluster multi-node Kubernetes
+- [Krew](https://krew.sigs.k8s.io/docs/user-guide/setup/install/)
+- [Helm](https://helm.sh/)  (Optionel)
 
-### Creation du cluster avec Minikube
+### Creation du cluster avec kubernetes
 
-- Demarrer Minikube cluster
-  - `minikube start -p cluster1`
 - Vérification des pods et configs
   - `kubectl get po -A`
-  - `kubectl get pod kube-controller-manager-<replace_with_cluster_name>   -n kube-system -o yaml
-- Minikube Dashboard
-  - `minikube dashboard`
+  - `kubectl get pod kube-controller-manager-<replace_with_cluster_name>   -n kube-system -o yaml`
 
 ### Installation et deploiment
 
@@ -25,13 +21,13 @@
   - `kubectl krew update`
   - `kubectl krew install minio`
   - `kubectl minio version`
-- Générer un Manifest pour le déploiement
-   `kubectl minio init --cluster-domain cluster.local --output > minio-init.yaml`
+- Générer un Manifest pour le déploiement  
+  - `kubectl minio init --cluster-domain cluster.local --output > minio-init.yaml`
 - Deployer MinIO Operator
   - `kubectl apply -f minio-init.yaml`
 - Vérification des ressources
   - `kubectl get ns` 
-  - `kubectl get all -n minio-operator
+  - `kubectl get all -n minio-operator`
 - Démarrer un forward proxy pour acceder à MinIO Operator UI Console
   - `kubectel minio proxy`
   - Copier le JWT généré pour acceder au Console
