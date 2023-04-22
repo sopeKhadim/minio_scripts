@@ -23,7 +23,7 @@ mc admin config set myminio notify_mysql:primary \   dsn_string="miniouser:minio
 - Redémarrage de MinIO  
 `mc admin service restart myminio`
 
-- Vérification des configs :
+- Vérification des configs  
  `mc event list ALIAS/BUCKET arn:minio:sqs::primary:mysql`
 
 ## Check des notifications après création ou manipulation d’objets
