@@ -30,3 +30,7 @@ mc admin config set myminio notify_mysql:primary \   dsn_string="miniouser:minio
 
 - `mysql -u root -p minio_db`
 - `Select * from bucketevents;`
+
+# Licence
+
+UnLisense

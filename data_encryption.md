@@ -158,3 +158,50 @@ minio server ~/minio/data --console-address :9090
 ```
 
 ## Encryption des données MinIO
+- Demarrer un terminal et ajouter les variables d'environnement ci-dessous :
+
+```shell
+export KES_SERVER=https://127.0.0.1:7373
+export KES_CLIENT_KEY=$HOME/minio/certs/minio-kes.key
+export KES_CLIENT_CERT=$HOME/minio/certs/minio-kes.cert
+```
+- Créer la clé d'encryption avec l'option -k ou --insecure
+
+```shell
+kes key create -k encrypted-bucket-key -k
+```
+- Si on veux générer une nouvelle clé de chiffrement des données.
+```shell
+kes key dek my-key-1 -k
+```
+
+## Test du chiffrement des données stockés dans un bucket MinIO
+- Créer un alias pour se connecter avec MinIO Server
+```shell
+mc alias set myminio http://127.0.0.1:9090 minioadmin minioadmin
+```
+- Activer le chiffrement automatique pour chaque objet ajouté dans le bucket par défaut.
+```shell
+mc encrypt set SSE-KMS encrypted-bucket-key myminio/bucketencrypted
+```
+- Copie d'objets dans le bucket `bucketencrypted`
+```shell
+mc cp file1.txt myminio/bucketencrypted
+mc cp file2.txt myminio/bucketencrypted
+```
+- Vérification si l'objet ajouté est chiffré
+```shell
+mc stat myminio/bucketencrypted/file1.txt
+```
+- Vérification des clés dans Vault
+```shell
+vault kv list kv/data
+
+Keys
+----
+encrypted-bucket-key
+minio-backend-default-key
+```
+# Licence
+
+UnLisense
