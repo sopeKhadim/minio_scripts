@@ -3,30 +3,47 @@
 ## Création de base de données  MySQL
 
 Créer un utilisateur miniouser et une base de données minio_db.
+```shell
+mysql -u root -p
+```
 
-- mysql -u root -p
-- CREATE user miniouser identified by 'pass123';
-- CREATE database minio_db;
-- GRANT ALL ON minio_db.* to miniouser;
-- FLUSH privileges;
+```sql
+mysql> CREATE USER miniouser identified BY 'pass123';
+mysql> CREATE database minio_db;
+mysql> GRANT ALL ON minio_db.* TO miniouser;
+mysql> FLUSH PRIVILEGES;
+```
 
 ## Configuration de la notification d'un bucket
 
 - Configuration avec mc
 
-```
-mc admin config set myminio notify_mysql:primary \   dsn_string="miniouser:minioadmin@tcp(localhost:3306)/minio_db" \
-  table="bucketevents" \
-  format="namespace" 
+```shell
+mc admin config set myminio notify_mysql:primary \   
+  dsn_string="miniouser:minioadmin@tcp(localhost:3306)/minio_db" \
+  table="bucketevents" \
+  format="namespace" 
 ```
 
-- Redémarrage de MinIO  
-`mc admin service restart myminio`
+- Redémarrage de MinIO
+```shell
+mc admin service restart myminio
+```
 
-- Vérification des configs :
- `mc event list ALIAS/BUCKET arn:minio:sqs::primary:mysql`
+- Vérification des configs  
+```shell
+mc event list ALIAS/BUCKET arn:minio:sqs::primary:mysql
+```
 
 ## Check des notifications après création ou manipulation d’objets
+```shell
+mysql -u root -p minio_db
+```
 
-- `mysql -u root -p minio_db`
-- `Select * from bucketevents;`
+```sql
+mysql> SELECT * FROM bucketevents;
+```
+
+# Licence
+
+UnLisense
